@@ -8,7 +8,7 @@ The service exposes a single endpoint:
 
 `POST /config`
 
-The request body is any **CONFIG** object of the following recursive structure (where only the **type** is mandatory, and *defaults* are indicated in *italics*):
+The request body is a **CONFIG** object in any of the following recursive structures (where **type** is the only mandatory field, and *defaults* are indicated in *italics*):
 
 ### Pool
 
@@ -46,7 +46,7 @@ This will resolve to an object with certain potential fields.
 * **fields:** *[]* - array (length >= 0) of objects
     * **label:** *''* - field label i.e. key, attribute name, etc.
     * **value:** *{ type: 'fixed' }* - a CONFIG object
-    * **presence:** *1* - floating point number in range [0, 1] indicating the probability of the field's presence in the resulting object
+    * **presence:** *1* - floating point number in range [0, 1] indicating the probability of the field's presence
 
 ### Array
 
@@ -79,7 +79,7 @@ This will resolve to an array of random length.
 This will resolve to a random number.
 
 * **min:** *0* - floating point number
-* **max:** *0* - floating point number >= min;
+* **max:** *0* - floating point number >= min
 * **scale:** *0* - integer >= 0 indicating the number of decimal places
 
 ### Fixed
@@ -91,7 +91,7 @@ This will resolve to a random number.
 }
 ```
 
-This will resolve to a random value from a fixed set of values.
+This will resolve to a single, random value from a fixed set of values.
 
 * **values:** *[null]* - array (length >= 1) of JSON values
 
@@ -99,10 +99,24 @@ This will resolve to a random value from a fixed set of values.
 
 The response will be a JSON value whose structure corresponds to the CONFIG object in the request.
 
-## Docker Build
+## Running
 
-The Docker build expects a single argument to indicate the port of the REST service:
+### Flask
+
+Run on Flask's built-in server:
 
 ```
-docker image build --tag khazad-image --build-arg PORT=1420 ~/path/to/khazad
+pip3 install -r requirements.txt
+python3 server.py
 ```
+
+### Docker + Gunicorn
+
+Build and run with Docker (on a Gunicorn server):
+
+```
+docker image build --tag khazad-image --build-arg PORT=2770 ~/path/to/khazad
+docker run --publish 2770:2770 khazad-image
+```
+
+*PORT argument is optional (and 2941 by default).*

@@ -14,4 +14,4 @@ def handleservererror(error):
     return error, 500
 
 if __name__ == '__main__':
-    application.run(host='0.0.0.0', port=8011)
+    application.run(host='0.0.0.0')
