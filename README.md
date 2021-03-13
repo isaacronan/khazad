@@ -2,6 +2,8 @@
 
 Flask nanoservice to generate random JSON data of any expressible structure.
 
+See what it can do [here](https://ishero.dev/poorbox).
+
 ## Request Format
 
 The service exposes a single endpoint:
