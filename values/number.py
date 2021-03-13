@@ -2,8 +2,8 @@ from math import trunc
 from scipy.stats import uniform
 from .value import Value
 
-class NumberValue(Value):
-    def __init__(self, min=0, max=1, scale=0):
+class Number(Value):
+    def __init__(self, min=0, max=0, scale=0):
         self.min = min
         self.max = max
         self.scale = scale

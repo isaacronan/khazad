@@ -1,8 +1,7 @@
-from functools import reduce
 from scipy.stats import randint
 from .value import Value
 
-class PrimitiveValue(Value):
+class Fixed(Value):
     def __init__(self, values=[None]):
         self.values = values
 
