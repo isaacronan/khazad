@@ -1,5 +1,5 @@
 from functools import reduce
-from scipy.stats import randint
+from random import randint
 from .value import Value
 from .fixed import Fixed
 
@@ -16,5 +16,5 @@ class Pool(Value):
         weightsbyindex = [(index, value.weight) for (index, value) in enumerate(self.values)]
         poolsbyindex = [[index for i in range(weight)] for (index, weight) in weightsbyindex]
         pool = reduce(lambda a, b: a + b, poolsbyindex, [])
-        index = pool[randint.rvs(0, len(pool))]
+        index = pool[randint(0, len(pool) - 1)]
         return self.values[index].value.resolve()

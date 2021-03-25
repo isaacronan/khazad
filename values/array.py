@@ -1,4 +1,4 @@
-from scipy.stats import randint
+from random import randint
 from .value import Value
 from .fixed import Fixed
 
@@ -9,5 +9,5 @@ class Array(Value):
         self.maxlength = maxlength
 
     def resolve(self):
-        length = randint.rvs(self.minlength, self.maxlength + 1)
+        length = randint(self.minlength, self.maxlength)
         return [self.value.resolve() for i in range(length)]

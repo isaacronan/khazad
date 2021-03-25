@@ -1,5 +1,5 @@
 from math import trunc
-from scipy.stats import uniform
+from random import uniform
 from .value import Value
 
 class Number(Value):
@@ -9,6 +9,6 @@ class Number(Value):
         self.scale = scale
 
     def resolve(self):
-        raw = self.min + uniform.rvs() * (self.max - self.min)
+        raw = uniform(self.min, self.max)
         scaled = trunc(raw * 10 ** self.scale) / 10 ** self.scale
         return scaled

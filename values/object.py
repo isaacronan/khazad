@@ -1,4 +1,4 @@
-from scipy.stats import bernoulli
+from random import random
 from .value import Value
 from .fixed import Fixed
 
@@ -13,5 +13,5 @@ class Object(Value):
         self.fields = fields
 
     def resolve(self):
-        presentfields = [(field.label, field.value) for field in self.fields if bernoulli.rvs(field.presence) == 1]
+        presentfields = [(field.label, field.value) for field in self.fields if random() < field.presence]
         return dict([(label, value.resolve()) for (label, value) in presentfields])

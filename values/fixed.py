@@ -1,4 +1,4 @@
-from scipy.stats import randint
+from random import randint
 from .value import Value
 
 class Fixed(Value):
@@ -6,4 +6,4 @@ class Fixed(Value):
         self.values = values
 
     def resolve(self):
-        return self.values[randint.rvs(0, len(self.values))]
+        return self.values[randint(0, len(self.values) - 1)]
